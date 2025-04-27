@@ -1,0 +1,38 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: John Doe <john.doe@somewhere.on.planet>
+Date: Sat, 26 Apr 2025 03:58:50 +0000
+Subject: Patching kernel sunxi64 files sound/soc/soc-pcm.c
+
+Signed-off-by: John Doe <john.doe@somewhere.on.planet>
+---
+ sound/soc/soc-pcm.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/sound/soc/soc-pcm.c b/sound/soc/soc-pcm.c
+index 511446a30c05..0b8dbbbc23e9 100644
+--- a/sound/soc/soc-pcm.c
++++ b/sound/soc/soc-pcm.c
+@@ -2866,14 +2866,16 @@ static int soc_get_playback_capture(struct snd_soc_pcm_runtime *rtd,
+ 
+ 	if (dai_link->capture_only)
+ 		has_playback = 0;
+ 
+ 	if (!has_playback && !has_capture) {
+-		dev_err(rtd->dev, "substream %s has no playback, no capture\n",
+-			dai_link->stream_name);
+-
+-		return -EINVAL;
++//		dev_err(rtd->dev, "substream %s has no playback, no capture\n",
++//			dai_link->stream_name);
++//
++//		return -EINVAL;
++		has_playback = 0;
++		has_capture = 0;
+ 	}
+ 
+ 	*playback = has_playback;
+ 	*capture  = has_capture;
+ 
+-- 
+Created with Armbian build tools https://github.com/armbian/build
+
