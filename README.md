@@ -13,7 +13,9 @@ Patches 001 and 002 may be combined or added as overlay.
 
 Based on work from https://forum.armbian.com/topic/37718-sound-on-h616h618-socs/ and many trials and  
 errors ( because i am altered kernel config too - not related to i2s ).  
-Patch 004 is not needed for I2S output. It adds usb0-host overlay, used to boot from USB storage device.  
+Patch 004 is not related to I2S output. It adds usb0-host overlay, used to boot from USB storage device. 
+
+
   
 
 
