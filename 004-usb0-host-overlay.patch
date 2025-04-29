@@ -1,0 +1,73 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: John Doe <john.doe@somewhere.on.planet>
+Date: Mon, 28 Apr 2025 04:26:43 +0000
+Subject: Patching kernel sunxi64 files
+ arch/arm64/boot/dts/allwinner/overlay/Makefile
+ arch/arm64/boot/dts/allwinner/overlay/sun50i-h616-usb0-host.dtso
+
+Signed-off-by: John Doe <john.doe@somewhere.on.planet>
+---
+ arch/arm64/boot/dts/allwinner/overlay/Makefile                   |  3 +-
+ arch/arm64/boot/dts/allwinner/overlay/sun50i-h616-usb0-host.dtso | 33 ++++++++++
+ 2 files changed, 35 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/overlay/Makefile b/arch/arm64/boot/dts/allwinner/overlay/Makefile
+index 16c739b56350..97bec2bf0615 100644
+--- a/arch/arm64/boot/dts/allwinner/overlay/Makefile
++++ b/arch/arm64/boot/dts/allwinner/overlay/Makefile
+@@ -78,11 +78,12 @@ dtb-$(CONFIG_ARCH_SUNXI) += \
+ 	sun50i-h616-ws2812.dtbo \
+ 	sun50i-h616-light.dtbo \
+ 	sun50i-h616-i2c0-pi.dtbo \
+ 	sun50i-h616-i2c1-pi.dtbo \
+ 	sun50i-h616-i2c2-pi.dtbo \
+-	sun50i-h616-gpu.dtbo
++	sun50i-h616-gpu.dtbo \
++	sun50i-h616-usb0-host.dtbo
+ 
+ scr-$(CONFIG_ARCH_SUNXI) += \
+ 	sun50i-a64-fixup.scr \
+ 	sun50i-h5-fixup.scr \
+ 	sun50i-h6-fixup.scr \
+diff --git a/arch/arm64/boot/dts/allwinner/overlay/sun50i-h616-usb0-host.dtso b/arch/arm64/boot/dts/allwinner/overlay/sun50i-h616-usb0-host.dtso
+new file mode 100644
+index 000000000000..1cc2a6d4db98
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/overlay/sun50i-h616-usb0-host.dtso
+@@ -0,0 +1,33 @@
++/dts-v1/;
++/plugin/;
++
++/ {
++	fragment@0 {
++		target = <&usbotg>;
++		__overlay__ {
++			dr_mode = "host";
++			status = "okay";
++		};
++	};
++
++	fragment@1 {
++		target = <&usbphy>;
++		__overlay__ {
++			status = "okay";
++		};
++	};
++
++	fragment@2 {
++		target = <&ehci0>;
++		__overlay__ {
++			status = "okay";
++		};
++	};
++
++	fragment@3 {
++		target = <&ohci0>;
++		__overlay__ {
++			status = "okay";
++		};
++	};
++};
+-- 
+Created with Armbian build tools https://github.com/armbian/build
+
