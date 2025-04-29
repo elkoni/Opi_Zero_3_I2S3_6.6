@@ -8,7 +8,6 @@ They are placed in "userpatches/kernel/archive/sunxi-6.6" directory.
   The following bitrates are tested 16000,22050,32000,44100,48000,88200,96000,176400 and 192000.  
 Seems, that driver ( sunxi_v2 ) uses only 32 bit slots for I2S, so the BCLK is the same for any  
 bith depth ( 16, 24 or 32 ).  
-You will need an i2s3 overlay from Opi_Zero_3_I2S3_6.1 repo.  
 Patches 001 and 002 may be combined or added as overlay. 
 
 Based on work from https://forum.armbian.com/topic/37718-sound-on-h616h618-socs/ and many trials and  
